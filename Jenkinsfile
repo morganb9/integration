@@ -22,5 +22,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('Deploy') {
+            steps {
+                withMaven(mavenSettingsConfig: 'maven-config', globalMavenSettingsConfig: 'global-config') {
+                    sh "mvn deploy"
+                }  
+            }
+        }
     }
 }
